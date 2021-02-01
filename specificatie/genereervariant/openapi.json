@@ -463,7 +463,7 @@
             "description" : "unieke identificatie van een niet-natuurlijk persoon (rechtspersoon of samenwerkingsverband)"
           },
           "type" : {
-            "$ref" : "#/components/schemas/PersoonType_enum"
+            "$ref" : "#/components/schemas/PersoonTypeEnum"
           },
           "vestigingsnummer" : {
             "type" : "string"
@@ -477,15 +477,22 @@
           "type" : "object",
           "properties" : {
             "soort" : {
-              "type" : "string",
-              "description" : "omschrijving van het soort zakelijk recht dat de eigenaar heeft op het WOZ-object",
-              "example" : "recht van erfpacht"
+              "type" : "array",
+              "description" : "omschrijving van het soort zakelijk recht dat de eigenaar heeft op het WOZ-object. Wanneer er meer dan één code voor zakelijk recht is opgenomen, betekent dit dat het zakelijk recht wordt belast met een ander zakelijk recht. Bijvoorbeeld [\"PE\", \"OS\"] betekent \"recht van erfpacht belast met recht van opstal\". De codes \"AA\" en \"BB\" geven aan, dat het codestelsel zakelijke rechten niet toereikend is.",
+              "items" : {
+                "$ref" : "#/components/schemas/AardZakelijkRechtEnum"
+              }
             }
           },
           "description" : "Belanghebbende eigenaar, erfpachter of houder van een opstalrecht of een vruchtgebruiker"
         } ]
       },
-      "PersoonType_enum" : {
+      "AardZakelijkRechtEnum" : {
+        "type" : "string",
+        "description" : "* `VE` - vol eigendom\n* `EP` - recht van erfpacht\n* `OS` - recht van opstal\n* `VG` - recht van vruchtgebruik\n* `GB` - recht van gebruik en bewoning\n* `GR` - recht van grondrente\n* `BP` - recht Belemmeringenwet-Privaatrecht\n* `BK` - beklemrecht\n* `SM` - stadsmeierrecht\n* `AA` - verkregen recht van meer dan drie rechten\n* `BB` - restantrecht na meer dan drie rechten\n* `OV` - overige rechten belast met\n* `EV` - vol eigendom belast met\n* `PE` - recht van erfpacht belast met\n* `SO` - recht van opstal belast met\n* `GV` - recht van vruchtgebruik belast met\n* `BG` - recht van gebruik en bewoning belast met\n* `RG` - recht van grondrente belast met\n* `PB` - recht Belemmeringenwet-Privaatrecht belast met\n* `KB` - beklemrecht belast met\n* `MS` - stadsmeierrecht belast met\n* `VO` - overige rechten belast met\n",
+        "enum" : [ "VE", "EP", "OS", "VG", "GB", "GR", "BP", "BK", "SM", "OV", "AA", "BB", "EV", "PE", "SO", "GV", "BG", "RG", "PB", "KB", "MS", "VO" ]
+      },
+      "PersoonTypeEnum" : {
         "type" : "string",
         "enum" : [ "natuurlijk_persoon", "niet_natuurlijk_persoon", "vestiging" ]
       },

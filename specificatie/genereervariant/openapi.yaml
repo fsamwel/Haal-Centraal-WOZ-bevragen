@@ -368,7 +368,7 @@ components:
           description: unieke identificatie van een niet-natuurlijk persoon (rechtspersoon
             of samenwerkingsverband)
         type:
-          $ref: '#/components/schemas/PersoonType_enum'
+          $ref: '#/components/schemas/PersoonTypeEnum'
         vestigingsnummer:
           type: string
     BelanghebbendeEigenaar:
@@ -377,13 +377,66 @@ components:
       - type: object
         properties:
           soort:
-            type: string
+            type: array
             description: omschrijving van het soort zakelijk recht dat de eigenaar
-              heeft op het WOZ-object
-            example: recht van erfpacht
+              heeft op het WOZ-object. Wanneer er meer dan één code voor zakelijk
+              recht is opgenomen, betekent dit dat het zakelijk recht wordt belast
+              met een ander zakelijk recht. Bijvoorbeeld ["PE", "OS"] betekent "recht
+              van erfpacht belast met recht van opstal". De codes "AA" en "BB" geven
+              aan, dat het codestelsel zakelijke rechten niet toereikend is.
+            items:
+              $ref: '#/components/schemas/AardZakelijkRechtEnum'
         description: Belanghebbende eigenaar, erfpachter of houder van een opstalrecht
           of een vruchtgebruiker
-    PersoonType_enum:
+    AardZakelijkRechtEnum:
+      type: string
+      description: |
+        * `VE` - vol eigendom
+        * `EP` - recht van erfpacht
+        * `OS` - recht van opstal
+        * `VG` - recht van vruchtgebruik
+        * `GB` - recht van gebruik en bewoning
+        * `GR` - recht van grondrente
+        * `BP` - recht Belemmeringenwet-Privaatrecht
+        * `BK` - beklemrecht
+        * `SM` - stadsmeierrecht
+        * `AA` - verkregen recht van meer dan drie rechten
+        * `BB` - restantrecht na meer dan drie rechten
+        * `OV` - overige rechten belast met
+        * `EV` - vol eigendom belast met
+        * `PE` - recht van erfpacht belast met
+        * `SO` - recht van opstal belast met
+        * `GV` - recht van vruchtgebruik belast met
+        * `BG` - recht van gebruik en bewoning belast met
+        * `RG` - recht van grondrente belast met
+        * `PB` - recht Belemmeringenwet-Privaatrecht belast met
+        * `KB` - beklemrecht belast met
+        * `MS` - stadsmeierrecht belast met
+        * `VO` - overige rechten belast met
+      enum:
+      - VE
+      - EP
+      - OS
+      - VG
+      - GB
+      - GR
+      - BP
+      - BK
+      - SM
+      - OV
+      - AA
+      - BB
+      - EV
+      - PE
+      - SO
+      - GV
+      - BG
+      - RG
+      - PB
+      - KB
+      - MS
+      - VO
+    PersoonTypeEnum:
       type: string
       enum:
       - natuurlijk_persoon
