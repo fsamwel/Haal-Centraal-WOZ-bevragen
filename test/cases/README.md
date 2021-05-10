@@ -17,14 +17,7 @@ Bij een testgeval betekent
 
 **Operaties:**
 
-- [zoekActueleWozobjecten](#zoekActueleWozobjecten)
 - [raadpleegActueelWozobject](#raadpleegActueelWozobject)
-
-## zoekActueleWozobjecten
-
-||||
-|--- |--- |--- |
-|_links{}|||
 
 ## raadpleegActueelWozobject
 
